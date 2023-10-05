@@ -1,0 +1,157 @@
+Drone Youtube Notes
+
+Julian Johnson
+10/4/2023
+
+Introduction to Drone Programming Part 1
+https://www.youtube.com/watch?v=qX4HeMhY_jI&list=PLWYeZ0NQDsoaIUAvUsE_6LEzy4G8H33Gb&index=12
+
+2 years old- note that uses px4 vs px6
+
+Waypoint navigation
+Return to home
+Follow Me
+auto takeoff and landing
+other autonomous features
+
+Tools:
+Ardupilot
+Pixhawk
+Ground Control Station (APM Planner, QGC, Mavproxy, other GCS)
+Mavlink
+DroneKit
+Linux
+Python
+Socket Programming 
+
+
+Drone System- 3 parts
+UAV (DIFFERENT FROM JUST DRONE!!)
+Drone Control Station 
+Communication Link System
+
+Break each down into Software, Hardware 
+Also, software + firmware :O 
+
+Drone- many subsystems. 
+Only interested in flight controller- "Brain" of drone. This is where code will run!
+Flight Controller makes calculation for commands! 
+
+How do we know drone will run well??
+Flight Dynamics Model of Drone!!! 
+Simulation of drone in real world- test stability 
+
+Ardupilot + SiTL (software in the loop)
+
+Ground Control Station- Ground based hardware/software to communicate & control drone
+Many available-
+QGS (ios, linux)
+Mavproxy(linux)
+tower, mavpilot(tablet)
+
+Communication Link system- telemetry
+Software - socket communication *
+nice. MAVLink protocol! 
+
+Next, ardupilot API 
+DroneKit!! 
+
+What are ardupilot & pixhawk??
+
+Ardupilot brief history
+Chris Anderson 2007, founds DIY-Drones
+Jordi 2008- Sparkfun competition
+Chris & Jordi found 3D Robotics, first ardupilot code drops 2009
+APM 1 released 2010
+
+Pixhawk - CV Autonomous drone research by Lorenz (2008)_
+He made drone & software himself with team of 14
+2009- win EMAV competition. Team name: Pixhawk!
+Released software as open source
+Also developed Mavlink protocol- picked up by open source community. 
+Also made QGroundControl for linux, windows 
+2011- scrapped software and hardware of last 3 years, complete rebuild solved their issues
+PX4 delivered the quality they wanted!
+pre 2013- Company 3DR used to make ardupilot hardware, began to partner with Pixhawk
+Last ardupilot: APM 2.5/2.6 in 2012
+
+7 lakhs lines of code (700k) ardupilot
+
+px4- 1.5 million lines of code 
+Support many different vehicle types!
+
+Cool features:
+Autonomous mode!! 
+Auto takeoff/landing
+return to home
+preprogrammed missions
+follow person/follow me
+accept commands from offboard computer/ GCS
+Failsafe- low battery, RC loss, position loss, data link loss,
+geofence breach, mission failsafe
+DETECT AND AVOID!!
+
+
+Part 3- a complete understanding of GCS
+https://www.youtube.com/watch?v=QggP5a5dYmk
+
+PC/Mobile phone/ tablet can function as one 
+Throttle, Pitch, Roll, Yaw
+GCS: battery, position, altitute, direction, speed, etc 
+
+Open source GCS
+Mission Planner (Windows) *recommended
+APM Planner 2
+MAVProxy (Linux only)
+QGroundControl(WIndows, Max, Linux, Android< Ios)
+UGCS
+Tablet/Smartphone:
+Tower/Droidplanner 3
+MAVpilot
+Andropilot
+SidePilot
+surrou
+
+
+Mission Planner installed!
+
+Part 4- Mission Planner
+https://www.youtube.com/watch?v=YFmcthC0O2Q
+
+Launch SITL, connect to mission planner
+how to plan proper mission?
+how to fly with gcs?
+how to change simulation parameters?
+
+simulation
+model
+plan
+waypoints! 
+
+Generally, use terrain based altitute, then relative. 
+Waypoint method not proper, though. 
+Plan in 5 phases
+Takeoff
+Climbing
+Cruise
+Descend
+Landing
+
+Cover under command 
+
+Setting up environment for drone programming
+https://www.youtube.com/watch?v=6Xz_W2mzQkQ
+
+Virtualbox? 
+Program on linux!!
+Ubuntu
+Archlinux
+
+
+
+
+0:21 / 13:38
+
+Connecting Raspberry Pi w/ Pixhawk and Communicating via MAVLink Protocol
+https://www.youtube.com/watch?v=DGAB34fJQFc&list=PLWYeZ0NQDsoaIUAvUsE_6LEzy4G8H33Gb&index=11
+
