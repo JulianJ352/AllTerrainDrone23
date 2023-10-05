@@ -1,0 +1,71 @@
+Mavlink and mavproxy key for communications
+
+https://ardupilot.org/dev/docs/raspberry-pi-via-mavlink.html
+serial- UART
+
+Next:
+python3 mavproxy.py --master=/dev/serial0 --baudrate 921600 --aircraft MyCopter
+
+Then:
+param show ARMING_CHECK
+param set ARMING_CHECK 0
+arm throttle
+
+
+Then:
+mavproxy.py --daemon --non-interactive --default-modules='' --continue --master=/dev/serial0 --baudrate 1500000 --out=udp:pro:14550
+
+But note:
+If the Raspberry PI is heavily loaded, mavproxy.py might not provide a reliable
+connecton for telemetry routing. This is more likely on older/slower devices like 
+the Raspberry PI Zero. If this happens, consider using mavlink-routerd.
+See this post on the ArduPilot forum for a detailed discussion: 
+MavLink Routing with Router software.
+
+fter installing, edit the mavlink-router config file’s
+/etc/mavlink-router/main.conf UART section to:
+
+[UartEndpoint to_fc]
+Device = /dev/serial0
+Baud = 921600
+
+Edit the mavlink-router config file /etc/mavlink-router/main.conf to include:
+
+[UdpEndpoint to_14550_external]
+Mode = eavesdropping
+Address = 0.0.0.0
+Port = 14550
+PortLock = 0
+
+Connect to Mission Planner:
+
+Primarily this means adding an --out <ipaddress>:14550 to the MAVProxy startup command with the being the address of the PC running the mission planner. On windows the ipconfig can be used to determine that IP address.
+On the computer used to write this wiki page the MAVProxy command became:
+
+mavproxy.py --master=/dev/ttyAMA0 --baudrate 57600 --out 192.168.137.1:14550 --aircraft MyCopter
+
+https://diydrones.com/profiles/blogs/fpv-setup-with-raspberry-pi
+FPV setup for video streaming:
+sudo apt-get install mplayer netcat
+
+cd /opt/vc/src/hello_pi
+
+make –C libs/ilclient
+
+make –C libs/vgfont
+
+cd /opt/vc/src/hello_pi/hello_video
+
+make
+
+cd ~
+
+Receiver setup:
+ifconfig
+mkfifo buffer
+
+nc -p 5001 -l > buffer | /opt/vc/src/hello_pi/hello_video/hello_video.bin buffer
+
+On Pi w/ camera:
+raspivid -t 0 -fps 15 -o - | nc 192.168.1.85 5001
+
